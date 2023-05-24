@@ -25,17 +25,25 @@
                 padding: 2%;
             }
 
-            .contact_me {
-                width: 25%; 
+            .button {
+                width: 15%; 
+                margin: 1%;
+                padding: 1%;
                 background-color: #E85A4F; 
                 color: #DADED4; 
-                float: right;
+                display: inline-flex;
                 cursor: pointer;
                 text-align: center;
+                justify-content:center
             }
             
             .linktext:hover{
                 color:yellow;
+            }
+
+            .linktext {
+                color: #DADED4;
+                text-decoration: none;
             }
         </style>
         <!-- Google Tag Manager -->
@@ -52,22 +60,28 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         <div class="main_divs">
-            <a class="linktext" href="https://elenakusevska.com/contactme"> <div class="contact_me">  
-                <b> Contact me </b>
-            </div> </a>
+            <div style="display: flex; justify-content:flex-end">
+                <div class="button"> 
+                    <a class="linktext" href="https://elenakusevska.com/contactme">   
+                    <b> alink 1 </b> </a>
+                </div> 
+                <div class="button"> <a class="linktext" href="https://elenakusevska.com/contactme">   
+                    <b> alink 2 </b> </a>
+                </div> 
+                <div class="button"> <a class="linktext" href="https://elenakusevska.com/contactme">   
+                    <b> Contact me </b> </a>
+                </div> 
+            </div>
             <div>
                 <h1> Elena Kusevska </h1>
-                <h4> Data Science/ Web Development/ Scientific Computing/ Computational Chemistry </h4>
+                <h4> Python Developer (Backend, Data) | Scientific Computing </h4>
                 <p> (Portfolio - in progress...) </p>
             </div>
         </div>
         <div class="main_divs">
-        <h4> Personal projects: </h4>
+        <h4> About me </h4>
             <ul> 
-                <li> <a href="https://github.com/ElenaKusevska/Random_color_combinations">
-                www.colorcombinations.app</a> </li>
-                <li> <a href="https://github.com/ElenaKusevska/chemicalsymmetryapp">
-                www.chemicalsymmetry.app</a> </li>
+                Some bullets
             </ul>
         </div>
     </body>
