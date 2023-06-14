@@ -3,6 +3,37 @@
     <head>
         <title>Elena Kusevska Contact Me</title>
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/theme.css') }}">
+
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('form').submit(function (e) {
+                    var url = "{{ url_for('contactme') }}";
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: $('form').serialize(),
+                        success: function (data) {
+                            console.log(data)
+                            document.getElementById('confirmationid').innerHTML = data.status
+                        }
+                    });
+                    e.preventDefault();
+                });
+
+                // Inject CSRF token into AJAX request.
+                $.ajaxSetup({
+                    beforeSend: function(xhr, settings) {
+                        if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                        }
+                    }
+                })
+            });
+        </script>
+            
+
     </head>
     <body>
         <div class="main_divs">
@@ -10,15 +41,23 @@
         </div>
 
         <div class="main_divs">
-        <h4> Contact Me </h4>
-        </div>
+            <h4> Contact Me </h4>
 
-        <form action="{{ url_for('contactme') }}" method="post">
-            <input type="submit" value="Submit">
-        </form>
+            <form action="{{ url_for('contactme') }}" method="post">
+                {{ form.hidden_tag() }}
+                {{ form.name.label() }}
+                {{ form.name() }}
+                {{ form.email.label() }}
+                {{ form.email() }}
+                {{ form.subject.label() }}
+                {{ form.subject() }}
+                {{ form.message.label() }}
+                {{ form.message() }}
+                <input type="submit" value="Send"/>
+            </form>
 
-        <div>
-            {{ message }}
+            <h4 id="confirmationid">&nbsp;</h4>
+
         </div>
     </body>
 </html>
