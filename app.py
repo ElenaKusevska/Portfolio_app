@@ -1,24 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
+
 from contact_form import ContactForm
 
-from dotenv import load_dotenv   
-load_dotenv()                   
-
-import os 
-
-
 app = Flask(__name__)
+app.config.from_object('config')
 
 mail = Mail()
-
-app.config['SECRET_KEY'] = 'ABCDEFGH'
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL')
-app.config['MAIL_PASSWORD'] = os.environ.get('PASSWORD')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
 mail.init_app(app)
 
 
