@@ -17,6 +17,11 @@
                         success: function (data) {
                             console.log(data)
                             document.getElementById('confirmationid').innerHTML = data.status
+
+                            document.getElementById('name').value = ""
+                            document.getElementById('email').value = ""
+                            document.getElementById('subject').value = ""
+                            document.getElementById('message').value = ""
                         }
                     });
                     e.preventDefault();
@@ -43,20 +48,30 @@
         <div class="main_divs">
             <h4> Contact Me </h4>
 
-            <form action="{{ url_for('contactme') }}" method="post">
-                {{ form.hidden_tag() }}
-                {{ form.name.label() }}
-                {{ form.name() }}
-                {{ form.email.label() }}
-                {{ form.email() }}
-                {{ form.subject.label() }}
-                {{ form.subject() }}
-                {{ form.message.label() }}
-                {{ form.message() }}
-                <input type="submit" value="Send"/>
-            </form>
+            <div class="contact_form_div">
+                <form action="{{ url_for('contactme') }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.name.label() }}
+                    <br>
+                    {{ form.name(class="text_input") }}
+                    <br>
+                    {{ form.email.label() }}
+                    <br>
+                    {{ form.email(class="text_input") }}
+                    <br>
+                    {{ form.subject.label() }}
+                    <br>
+                    {{ form.subject(class="text_input") }}
+                    <br>
+                    {{ form.message.label() }}
+                    <br>
+                    {{ form.message(class="message_box") }}
+                    <br>
+                    <input type="submit" value="Send"/>
+                </form>
 
-            <h4 id="confirmationid">&nbsp;</h4>
+                <h4 id="confirmationid">&nbsp;</h4>
+            </div>
 
         </div>
     </body>
