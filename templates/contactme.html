@@ -7,38 +7,9 @@
         <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 
         <script>
-            $(document).ready(function() {
-                $('form').submit(function (e) {
-                    var url = "{{ url_for('contactme') }}";
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: $('form').serialize(),
-                        success: function (data) {
-                            console.log(data)
-                            document.getElementById('confirmationid').innerHTML = data.status
-
-                            document.getElementById('name').value = ""
-                            document.getElementById('email').value = ""
-                            document.getElementById('subject').value = ""
-                            document.getElementById('message').value = ""
-                        }
-                    });
-                    e.preventDefault();
-                });
-
-                // Inject CSRF token into AJAX request.
-                $.ajaxSetup({
-                    beforeSend: function(xhr, settings) {
-                        if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                            xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
-                        }
-                    }
-                })
-            });
+            var url = "{{ url_for('contactme') }}";
         </script>
-            
-
+        <script type="text/javascript" src="{{ url_for('static',filename='js/ajax_pass_data.js') }}"></script>
     </head>
     <body>
         <div class="main_divs">
